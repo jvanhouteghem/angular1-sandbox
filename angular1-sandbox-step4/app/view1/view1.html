@@ -1,0 +1,7 @@
+<p class="generalinfos">This is the partial for view 1.</p>
+<p class="fromcontroller">{{varfromcontroller1}}</p>
+<p class="fromservice">{{sharedVar}}</p>
+<input class="fromservice" type="text" ng-model="sharedVar" ng-change="inputSharedVar(sharedVar)">
+<p class="fromservicetoken">{{readToken}}</p>
+<button class="fromservicetoken" ng-click="setToken()">Create Token</button><button class="fromservicetoken" ng-click="deleteToken()">Delete Token</button> 
+<p class="fromserviceHttp">{{jsonFromHttpget}}</p>
