@@ -7,17 +7,7 @@ angular.module('myApp.view1', ['ngRoute'])
   $routeProvider
     .when('/view1', {
       templateUrl: 'view1/view1.html',
-      controller: 'View1Ctrl',
-      resolve: {
-          resolvedVal: function() {
-            console.log('a');
-              //return 'view2/view2.html';
-              return false;
-          }
-      }
-    })
-    .otherwise({
-      redirectTo: '/view2'
+      controller: 'View1Ctrl'
     });
 }])
 
@@ -46,7 +36,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 }]);
 
-// http://embed.plnkr.co/gfF8c0ggklNh9F1c71sF/preview
+// voir http://embed.plnkr.co/gfF8c0ggklNh9F1c71sF/preview
 // http://stackoverflow.com/a/38297944
 // https://www.theodo.fr/blog/2015/08/handling-basic-route-authorization-in-angularjs/
 // https://coderwall.com/p/f6brkg/angularjs-access-control-and-authentication
