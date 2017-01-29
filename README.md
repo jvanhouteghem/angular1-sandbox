@@ -1,1 +1,2 @@
-# angular1-sandbox
+# sandbox-angular
+Angular 1 step by step
