@@ -1,17 +1,25 @@
 'use strict';
 
 angular.module('myApp.view1', ['ngRoute'])
-
 .config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
     .when('/view1', {
-      templateUrl: 'view1/view1.html',
-      controller: 'View1Ctrl'
+      templateUrl: 'a' == 'a' ? 'view1/view1.html' : 'view2/view2.html', // (better way to redirect? No, The parameters coming to templateUrl are fixed. See http://stackoverflow.com/a/33840304 and use templateProvider)
+      controller: 'View1Ctrl'/*,
+      resolve: {
+          message: function(messageService){
+              console.log("test");
+        }
+    }*/
     });
 }])
 
-.controller('View1Ctrl', ['$scope', 'sharedProperties', 'localStorage', function($scope, sharedProperties, localStorage) {
+.controller('View1Ctrl', ['$window', '$scope', 'sharedProperties', 'localStorage', function($window, $scope, sharedProperties, localStorage) {
+  
+  // (the dirty way to redirect) if no token then redirect
+  //$window.location.href = 'index.html#!/view2';
+
   $scope.varfromcontroller1 = 'Value of varfromcontroller1';
   
   $scope.sharedVar = sharedProperties.getProperty();
