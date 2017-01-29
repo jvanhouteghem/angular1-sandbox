@@ -1,53 +1,44 @@
-##1 Our first angular var in view1
-NB : Be careful about syntax error, $scope is first with simple quote then without quote.
-
-Replace
-
-```js
-.controller('View1Ctrl', [function() {
-
-
-}]);
+##1 Our first factory
+add 
 ```
-By
+.factory('sharedProperties', function($http){
 
-```js
-.controller('View1Ctrl', ['$scope', function($scope, sharedProperties) {
-  $scope.varfromcontroller1 = 'Value of varfromcontroller1';
-  $scope.sharedVar = sharedProperties.getProperty();
-}]);
-```
+    var property = 'Value of varFromService1';
 
-##2 Display varfromcontroller1 from view1 to view2
-We have to create a service to share a variable between several controllers.
-- Create a repository app/services then add service1.js : 
-
-```js
-angular.module('myApp')
-
-.service('sharedProperties', function () {
-  var property = 'Value of varFromService1';
-
-  return {
-      getProperty: function () {
-          return property;
-      },
-      setProperty: function(value) {
-          property = value;
-      }
-  };
+    return {
+        getProperty: function () {
+            return property;
+        },
+        setProperty: function(value) {
+            property = value;
+        },
+        getPropertyFromJson: function(){
+            return $http.get('https://jsonplaceholder.typicode.com/users');
+        }
+    };  
 });
 ```
-- Add ```<script src="services/service1.js"></script> in index.html```
-- Update the controller : 
-```js
-.controller('View1Ctrl', ['$scope', 'sharedProperties', function($scope, sharedProperties) {
-  $scope.varfromcontroller1 = 'Value of varfromcontroller1';
-  $scope.sharedVar = sharedProperties.getProperty();
-}]);
-```
 
-##3 Add some color
-Grey for general information in html
-Violet for var from controller
-Blue for var from service
+Then in controller : 
+  sharedProperties.getPropertyFromJson().then(function(d){
+    $scope.jsonFromHttpget = d;
+  });
+
+  It will display httpget result
+
+##2 Add cache
+Add { cache: true}, now the json isn't load everytime you come back to view 1.
+
+##3 Update shared var
+We stored a variable in our service1. Now we want to update this var in view1 and then verify that the variable changed in view2.
+- In view1.js add : 
+```
+  $scope.inputSharedVar = function(){
+    sharedProperties.setProperty($scope.sharedVar);
+  }; // NB : We use function because we can't do directly $scope.inputSharedVar = sharedProperties.setProperty($scope.sharedVar); cuz it not update value between controllers.
+
+```
+- In view1.html add 
+```
+<input type="text" ng-model="sharedVar" ng-change="inputSharedVar(sharedVar)">
+```
