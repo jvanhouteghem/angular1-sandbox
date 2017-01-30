@@ -3,22 +3,15 @@
 angular.module('myApp.view1', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
 
-  $routeProvider
+
+$routeProvider
     .when('/view1', {
-      templateUrl: 'a' == 'a' ? 'view1/view1.html' : 'view2/view2.html', // (better way to redirect? No, The parameters coming to templateUrl are fixed. See http://stackoverflow.com/a/33840304 and use templateProvider)
-      controller: 'View1Ctrl'/*,
-      resolve: {
-          message: function(messageService){
-              console.log("test");
-        }
-    }*/
+      templateUrl: 'view1/view1.html', // (better way to redirect? No, The parameters coming to templateUrl are fixed. See http://stackoverflow.com/a/33840304 and use templateProvider)
+      controller: 'View1Ctrl'
     });
 }])
 
-.controller('View1Ctrl', ['$window', '$scope', 'sharedProperties', 'localStorage', function($window, $scope, sharedProperties, localStorage) {
-  
-  // (the dirty way to redirect) if no token then redirect
-  //$window.location.href = 'index.html#!/view2';
+.controller('View1Ctrl', ['$window', '$scope', 'sharedProperties', 'authentification', function($window, $scope, sharedProperties, authentification) {
 
   $scope.varfromcontroller1 = 'Value of varfromcontroller1';
   
@@ -32,14 +25,14 @@ angular.module('myApp.view1', ['ngRoute'])
     $scope.jsonFromHttpget = d;
   });
 
-  $scope.readToken = localStorage.readToken();
+  $scope.readToken = authentification.readToken();
   $scope.setToken = function(){
-      localStorage.setToken();
-      $scope.readToken = localStorage.readToken();
+      authentification.setToken();
+      $scope.readToken = authentification.readToken();
   };
   $scope.deleteToken = function(){
-      localStorage.deleteToken();
-      $scope.readToken = localStorage.readToken();
+      authentification.deleteToken();
+      $scope.readToken = authentification.readToken();
   };
 
 }]);
@@ -50,3 +43,5 @@ angular.module('myApp.view1', ['ngRoute'])
 // https://coderwall.com/p/f6brkg/angularjs-access-control-and-authentication
 // https://code.ciphertrick.com/2014/12/14/check-condition-before-loading-route-in-angular-js/
 // http://www.frangular.com/2012/12/initialisations-avant-routage-avec-resolve.html
+// http://stackoverflow.com/questions/13681116/angularjs-dynamic-routing
+// https://www.youtube.com/watch?v=CgXj0_pAQDI

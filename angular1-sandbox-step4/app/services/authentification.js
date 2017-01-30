@@ -1,7 +1,7 @@
 
 angular.module('myApp')
 
-.factory('localStorage', function($window, $http){
+.factory('authentification', function($window, $http){
 
     return {
         readToken: function () {
@@ -15,7 +15,17 @@ angular.module('myApp')
             $window.localStorage.removeItem('token');
         },
         verrifyToken: function(){
-
+            return this.readToken() == null ? false : true;
+        },
+        validate: function(requiredRole){
+            if (this.verrifyToken() == false){
+                if (requiredRole == 'admin'){
+                    //console.log('Token error. You are not ' + right);
+                    $window.location.href = 'index.html#!/view1';
+                }
+            }
         }
     };  
 });
+
+// add 403 http://stackoverflow.com/questions/25041929/angularjs-routeprovider-http-status-403

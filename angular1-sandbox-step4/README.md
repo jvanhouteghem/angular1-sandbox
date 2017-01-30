@@ -1,5 +1,3 @@
-In progress.
-
 ## 1. Lets store a jwt in localstorage
 - Create localstorage.js
 ```
@@ -40,3 +38,31 @@ angular.module('myApp')
 ```
 
 ## 2. Update routeprovider
+We want to redirect view2 to view1 if there is no token in localstorage.
+
+Rename locastorage to authentification.
+
+add into localstorage.js :
+```
+        verrifyToken: function(){
+            return this.readToken() == null ? false : true;
+        },
+        validate: function(requiredRole){
+            if (this.verrifyToken() == false){
+                if (requiredRole == 'admin'){
+                    //console.log('Token error. You are not ' + right);
+                    $window.location.href = 'index.html#!/view1';
+                }
+            }
+        }
+```
+update view2 :
+```
+.controller('View2Ctrl', ['$window', '$scope', 'sharedProperties', 'authentification', function($window, $scope, sharedProperties, authentification) {
+
+  authentification.validate('admin'); // new
+
+  $scope.sharedVar = sharedProperties.getProperty();
+
+}]);
+```
