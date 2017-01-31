@@ -6,7 +6,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 $routeProvider
     .when('/view1', {
-      templateUrl: 'view1/view1.html', // (better way to redirect? No, The parameters coming to templateUrl are fixed. See http://stackoverflow.com/a/33840304 and use templateProvider)
+      templateUrl: 'views/view1/view1.html', // (better way to redirect? No, The parameters coming to templateUrl are fixed. See http://stackoverflow.com/a/33840304 and use templateProvider)
       controller: 'View1Ctrl'
     });
 }])
@@ -36,12 +36,3 @@ $routeProvider
   };
 
 }]);
-
-// voir http://embed.plnkr.co/gfF8c0ggklNh9F1c71sF/preview
-// http://stackoverflow.com/a/38297944
-// https://www.theodo.fr/blog/2015/08/handling-basic-route-authorization-in-angularjs/
-// https://coderwall.com/p/f6brkg/angularjs-access-control-and-authentication
-// https://code.ciphertrick.com/2014/12/14/check-condition-before-loading-route-in-angular-js/
-// http://www.frangular.com/2012/12/initialisations-avant-routage-avec-resolve.html
-// http://stackoverflow.com/questions/13681116/angularjs-dynamic-routing
-// https://www.youtube.com/watch?v=CgXj0_pAQDI
