@@ -11,3 +11,4 @@ In progress.
 * Step 6 : Angular Material
 * Step 7 : Common part
 * Step 8 : Watcher
+* Step 9 : Jwt validator (front)
