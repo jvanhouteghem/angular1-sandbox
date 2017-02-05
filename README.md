@@ -6,3 +6,5 @@ Angular 1 step by step
 * Step 3 : $http
 * Step 4 : Localstorage and anthentification
 * Step 5 : test playground
+* Step 6 : Angular Material
+* Step 7 : Common part
