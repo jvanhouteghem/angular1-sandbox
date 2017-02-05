@@ -8,7 +8,9 @@ angular.module('myApp.header', [])
   })
 
   .controller('HeaderCtrl', ['$window', '$scope', 'sharedProperties', 'authentification', function($window, $scope, sharedProperties, authentification) {
+    
     $scope.headerVar = sharedProperties.getProperty() + " - from HeaderCtrl";
+    
   }])
 
 ;

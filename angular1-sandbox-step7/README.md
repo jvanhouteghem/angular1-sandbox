@@ -1,6 +1,4 @@
-## Angular Material
-
-Common part
+## Common part
 
 In this example we want to hide view2 link if we have no jwt in local storage.
 
@@ -33,4 +31,14 @@ angular.module('myApp', [
 ])
 ```
 4- Add content inside header.html
+```
+<div class="fromcommon">
+    <ul class="menu">
+        <li><a href="#!/view1">view1</a></li>
+        <li><a href="#!/view2">view2</a></li>
+    </ul>
+    <p>{{headerVar}}</p>
+    <p>{{headerVar}}</p>
+</div>
+```
 5- Insert new directive "<div appheader>" inside index.html

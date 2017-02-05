@@ -18,6 +18,7 @@ $routeProvider
   $scope.varfromcontroller1 = 'Value of varfromcontroller1';
   
   $scope.sharedVar = sharedProperties.getProperty();
+  
   $scope.inputSharedVar = function(){
     sharedProperties.setProperty($scope.sharedVar);
   }; // NB : We use function because we can't do directly $scope.inputSharedVar = sharedProperties.setProperty($scope.sharedVar); cuz it not update value between controllers.
