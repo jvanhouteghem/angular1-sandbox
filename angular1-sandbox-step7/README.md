@@ -42,3 +42,6 @@ angular.module('myApp', [
 </div>
 ```
 5- Insert new directive "<div appheader>" inside index.html
+
+// The var don't change dynamically
+http://stackoverflow.com/a/17558885

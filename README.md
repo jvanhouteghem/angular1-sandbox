@@ -8,3 +8,4 @@ Angular 1 step by step
 * Step 5 : test playground
 * Step 6 : Angular Material
 * Step 7 : Common part
+* Step 8 : Watchers
